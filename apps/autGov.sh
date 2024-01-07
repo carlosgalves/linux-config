@@ -1,5 +1,7 @@
 #!/bin/sh
 
+log_file="log.txt"
+
 check_installation() {
     if [ $? -eq 0 ]; then
         echo "[SUCCESS] $2" >> "$log_file"
