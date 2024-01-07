@@ -3,7 +3,7 @@
 # extension manager
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 # gnome-extensions
-sudo dnf -y install gnome-extensions
+sudo dnf -y install gnome-extensions-app
 #gnome-tweaks
 sudo dnf -y install gnome-tweaks
 # adwaita-dark
