@@ -17,7 +17,7 @@ sudo dnf -y install mariadb-server
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 
-# sudo ./mysql_secure_installation.sh
+sudo chmod +x development/mysql_secure_installation && sudo ./development/mysql_secure_installation.sh
 
 # PHP
 echo "Installing php..."

@@ -9,7 +9,10 @@ spawn sudo mysql_secure_installation
 expect \"Enter current password for root (enter for none):\"
 send \"\r\"
 
-expect \"Set root password?\"
+expect \"Switch to unix_socket authentication\"
+send \"y\r\"
+
+expect \"Change the root password?\"
 send \"y\r\"
 
 expect \"New password:\"
