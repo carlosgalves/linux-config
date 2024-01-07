@@ -27,9 +27,9 @@ sudo systemctl enable docker
 #sudo groupadd docker && sudo gpasswd -a ${USER} docker && sudo systemctl restart docker
 #newgrp docker
 
-echo
-echo "Docker status:"
-systemctl status docker
+#echo
+#echo "Docker status:"
+#systemctl status docker
 
 if check_installation "Docker"; then
     docker_version=$(docker --version)
