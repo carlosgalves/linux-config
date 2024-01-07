@@ -2,9 +2,6 @@
 
 log_file="log.txt"
 
-
-source progress-bar.sh
-
 # Variables to store installation status
 success_apps=""
 failed_apps=""
@@ -54,28 +51,33 @@ check_installation() {
     fi
 }
 
+show_progress() {
+    local current=$1
+    local total=$2
+    local progress_percent=$((current * 100 / total))
+    printf "\rProgress %d/%d [%-20s] %d%%\n" "$current" "$total" $(printf '#%.0s' $(seq 1 $((progress_percent / 5)))) "$progress_percent"
+}
+
 
 # Display information about adding Flathub repository
 echo "Adding Flathub repository..."
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo "Flathub repository added successfully!"
 
-progress=0
-
 # Loop through the apps and install them
+progress=0
 for app in $apps_to_install; do
-    display_progress $progress
+    ((progress++))
     echo "Installing $app..."
     flatpak install flathub $app -y
     check_installation $app
     show_progress $progress $total_apps
-    progress=$((progress + 1))
 done
 
 echo
 
 echo "****************************************************************"
 echo "Installation completed!"
-echo "Successfully installed: \033[32m${success_apps%, }\033[0m"
-echo "Failed to install: \033[31m${failed_apps%, }\033[0m"
+echo "Successfully installed: ${success_apps%, }"
+echo "Failed to install: ${failed_apps%, }"
 echo "****************************************************************"
