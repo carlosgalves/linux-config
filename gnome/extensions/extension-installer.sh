@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # extension manager
-flatpak install flathub com.mattjakeman.ExtensionManager
+flatpak install flathub com.mattjakeman.ExtensionManager -y
 # gnome-extensions
 sudo dnf -y install gnome-tweaks
 #gnome-tweaks
