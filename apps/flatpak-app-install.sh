@@ -25,6 +25,8 @@ apps_to_install=(
     "net.nokyan.Resources Resources"
     "pteid-mw-linux.x86_64.flatpak Autenticação Gov"
     "org.nickvision.money Denaro"
+    "flatpak install flathub com.ranfdev.Notify Notify"
+    "https://flathub.org/apps/org.nickvision.tubeconverter Parabolic"
 )
 
 # Variables to store installation status
