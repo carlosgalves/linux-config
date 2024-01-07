@@ -1,8 +1,24 @@
-#!/bin/sh
+#!/bin/bash
 
-steps=9
+log_file="log.txt"
 
-progress=0
+# Check if the log file exists, create it if not
+if [ ! -e "$log_file" ]; then
+    touch "$log_file"
+fi
+
+install_scripts=(
+    "apps/fedora/firefox-setup.sh"
+    "apps/flatpak-apps.sh"
+    "apps/authGov.sh"
+    "apps/fedora/fedora-packages.sh"
+    "apps/fedora/fedora-apps.sh"
+    "gnome/extensions/extension-installer.sh"
+    "development/lamp.sh"
+    "development/docker-install.sh"
+    "development/rabbitmq-installer.sh"
+)
+
 show_progress() {
     local current=$1
     local total=$2
@@ -11,50 +27,13 @@ show_progress() {
 }
 
 
-# firefox
-show_progress $progress $steps
-sudo chmod +x apps/fedora/firefox-setup.sh && sudo ./apps/fedora/firefox-setup.sh
-progress=$((progress + 1))
+progress=0
+for script in "${install_scripts[@]}"; do
+    show_progress $progress ${#install_scripts[@]}
+    sudo chmod +x "$script" && sudo ./"$script"
+    progress=$((progress + 1))
+done
 
-# flatpak
-show_progress $progress $steps
-sudo chmod +x apps/flatpak-apps.sh && sudo ./apps/flatpak-apps.sh
-progress=$((progress + 1))
-
-show_progress $progress $steps
-sudo chmod +x apps/authGov.sh && sudo ./apps/authGov.sh
-progress=$((progress + 1))
-
-# fedora
-show_progress $progress $steps
-sudo chmod +x apps/fedora/fedora-packages.sh && sudo ./apps/fedora/fedora-packages.sh
-progress=$((progress + 1))
-
-show_progress $progress $steps
-sudo chmod +x apps/fedora/fedora-apps.sh && sudo ./apps/fedora/fedora-apps.sh
-progress=$((progress + 1))
-
-# gnome extensions
-show_progress $progress $steps
-sudo chmod +x gnome/extensions/extension-installer.sh && sudo ./gnome/extensions/extension-installer.sh
-progress=$((progress + 1))
-
-# development
-show_progress $progress $steps
-sudo chmod +x development/lamp.sh && sudo ./development/lamp.sh
-progress=$((progress + 1))
-
-show_progress $progress $steps
-sudo chmod +x development/docker-install.sh && sudo ./development/docker-install.sh
-progress=$((progress + 1))
-
-show_progress $progress $steps
-sudo chmod +x development/rabbitmq-installer.sh && sudo ./development/rabbitmq-installer.sh
-progress=$((progress + 1))
-
-
-
-log_file="log.txt"
 
 echo "Install status:"
 awk '/\[SUCCESS\]/ {gsub(/.*\[SUCCESS\] /, "\033[32m&\033[0m"); print}' "$log_file"

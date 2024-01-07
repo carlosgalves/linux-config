@@ -1,11 +1,4 @@
-#!/bin/sh
-
-log_file="log.txt"
-
-# Check if the log file exists, create it if not
-if [ ! -e "$log_file" ]; then
-    touch "$log_file"
-fi
+#!/bin/bash
 
 check_installation() {
     if [ $? -eq 0 ]; then
