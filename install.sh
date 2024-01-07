@@ -10,7 +10,7 @@ fi
 install_scripts=(
     "apps/fedora/firefox-setup.sh"
     "apps/flatpak-apps.sh"
-    "apps/authGov.sh"
+    "apps/autGov.sh"
     "apps/fedora/fedora-packages.sh"
     "apps/fedora/fedora-apps.sh"
     "gnome/extensions/extension-installer.sh"
