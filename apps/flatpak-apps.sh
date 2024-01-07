@@ -23,7 +23,6 @@ apps_to_install=(
     "com.raggesilver.BlackBox BlackBox"
     "io.github.flattool.Warehouse Warehouse"
     "net.nokyan.Resources Resources"
-    "pteid-mw-linux.x86_64.flatpak Autenticação Gov"
     "org.nickvision.money Denaro"
     "com.ranfdev.Notify Notify"
     "org.nickvision.tubeconverter Parabolic"
@@ -79,5 +78,3 @@ for app_entry in "${apps_to_install[@]}"; do
     check_installation $package_name "$app_name"
     show_progress $progress $total_apps
 done
-
-echo
