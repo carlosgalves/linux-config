@@ -8,11 +8,7 @@ check_installation() {
     fi
 }
 
-echo "Installing Firefox..."
-
-sudo dnf remove firefox -y
-
-flatpak install flathub org.mozilla.firefox -y
+echo "Themeing Firefox..."
 
 # gnome theme
 curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme/master/scripts/install-by-curl.sh | bash
