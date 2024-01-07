@@ -25,6 +25,7 @@ apps_to_install=(
     "org.nickvision.money Denaro"
     "com.ranfdev.Notify Notify"
     "org.nickvision.tubeconverter Parabolic"
+    "org.gnome.World.PikaBackup Pika Backup"
 )
 
 # Variables to store installation status
