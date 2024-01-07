@@ -25,8 +25,8 @@ apps_to_install=(
     "net.nokyan.Resources Resources"
     "pteid-mw-linux.x86_64.flatpak Autenticação Gov"
     "org.nickvision.money Denaro"
-    "flatpak install flathub com.ranfdev.Notify Notify"
-    "https://flathub.org/apps/org.nickvision.tubeconverter Parabolic"
+    "com.ranfdev.Notify Notify"
+    "org.nickvision.tubeconverter Parabolic"
 )
 
 # Variables to store installation status
@@ -36,21 +36,25 @@ total_apps=${#apps_to_install[@]}
 
 # Function to check installation status and retry if unsuccessful
 check_installation() {
-    if [ $? -eq 0 ]; then
-        echo "[SUCCESS] $2" >> "$log_file"
-        success_apps="$success_apps$2, "
-    else
-        echo "[FAILURE] $2" >> "$log_file"
-        echo "Retrying installation for $2..."
-        flatpak install --reinstall -y $1
+    local retries=2  # Number of retries
+    local app_name=$2
+
+    for ((attempt = 1; attempt <= retries; attempt++)); do
+        echo "Installing $app_name (Attempt $attempt)..."
+        flatpak install -y "$1"
+
         if [ $? -eq 0 ]; then
-            echo "[SUCCESS (after retry)] $2" >> "$log_file"
-            success_apps="$success_apps$2 (after retry), "
+            echo "[SUCCESS] $app_name" >> "$log_file"
+            success_apps="$success_apps$app_name, "
+            return 0  # Exit the function with success status
         else
-            echo "[FAILURE (after retry)] $2" >> "$log_file"
-            failed_apps="$failed_apps$2, "
+            echo "[FAILURE] $app_name (Attempt $attempt)" >> "$log_file"
         fi
-    fi
+    done
+
+    # If all attempts fail, mark it as a final failure
+    failed_apps="$failed_apps$app_name, "
+    return 1  # Exit the function with failure status
 }
 
 show_progress() {
