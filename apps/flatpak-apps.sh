@@ -18,7 +18,6 @@ apps_to_install=(
     "com.stremio.Stremio Stremio"
     "com.spotify.Client Spotify"
     "com.usebottles.bottles Bottles"
-    "org.remmina.Remmina Remmina"
     "org.keepassxc.KeePassXC KeePassXC"
     "com.raggesilver.BlackBox BlackBox"
     "io.github.flattool.Warehouse Warehouse"
@@ -35,25 +34,17 @@ total_apps=${#apps_to_install[@]}
 
 # Function to check installation status and retry if unsuccessful
 check_installation() {
-    local retries=2  # Number of retries
-    local app_name=$2
+    local app_name=$1
 
-    for ((attempt = 1; attempt <= retries; attempt++)); do
-        echo "Installing $app_name (Attempt $attempt)..."
-        flatpak install -y "$1"
-
-        if [ $? -eq 0 ]; then
-            echo "[SUCCESS] $app_name" >> "$log_file"
-            success_apps="$success_apps$app_name, "
-            return 0  # Exit the function with success status
-        else
-            echo "[FAILURE] $app_name (Attempt $attempt)" >> "$log_file"
-        fi
-    done
-
-    # If all attempts fail, mark it as a final failure
-    failed_apps="$failed_apps$app_name, "
-    return 1  # Exit the function with failure status
+    if [ $? -eq 0 ]; then
+        echo "[SUCCESS] $app_name" >> "$log_file"
+        success_apps="$success_apps$app_name, "
+        return 0  # Exit the function with success status
+    else
+        echo "[FAILURE] $app_name" >> "$log_file"
+        failed_apps="$failed_apps$app_name, "
+        return 1  # Exit the function with failure status
+    fi
 }
 
 show_progress() {
@@ -72,9 +63,9 @@ echo "Flathub repository added successfully!"
 progress=0
 for app_entry in "${apps_to_install[@]}"; do
     IFS=' ' read -r package_name app_name <<< "$app_entry"
-    ((progress++))
+    progress=$((progress + 1))
     echo "Installing $app_name..."
     flatpak install flathub $package_name -y
-    check_installation $package_name "$app_name"
+    check_installation "$app_name"
     show_progress $progress $total_apps
 done

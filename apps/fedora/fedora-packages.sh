@@ -5,12 +5,16 @@ success_apps=""
 failed_apps=""
 
 check_installation() {
+    local app_name=$1
+
     if [ $? -eq 0 ]; then
-        echo "[SUCCESS] $2: $1" >> "$log_file"
-        success_apps="$success_apps, $2"
+        echo "[SUCCESS] $app_name" >> "$log_file"
+        success_apps="$success_apps$app_name, "
+        return 0  # Exit the function with success status
     else
-        echo "[FAILURE] $2: $1" >> "$log_file"
-        failed_apps="$failed_apps, $2"
+        echo "[FAILURE] $app_name" >> "$log_file"
+        failed_apps="$failed_apps$app_name, "
+        return 1  # Exit the function with failure status
     fi
 }
 
@@ -19,11 +23,9 @@ echo "Installing Fedora packages..."
 # Install essential packages
 echo "Adding essential packages..."
 sudo dnf -y install bash-completion curl wget telnet 
-check_installation "bash-completion curl wget telnet" 
 
 # Enable RPM Fusion repositories
 sudo dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-check_installation "RPM Fusion repositories" 
 
 # Multimedia codecs
 echo "Installing multimedia codecs..."
@@ -38,6 +40,6 @@ sudo dnf -y install nodejs
 # se a instalação tiver sucesso -> guardar versão do node
 if [ $? -eq 0 ]; then
     node_version=$(node --version)
-    check_installation "Node.js" "Node.js"
+    check_installation "Node.js"
     echo "[NODE VERSION]: $node_version" >> "$log_file"
 fi
