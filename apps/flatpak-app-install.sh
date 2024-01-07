@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 log_file="log.txt"
 
+
+source progress-bar.sh
 
 # Variables to store installation status
 success_apps=""
@@ -31,7 +33,6 @@ apps_to_install="
     net.nokyan.Resources
     pteid-mw-linux.x86_64.flatpak
     org.nickvision.money
-    # com.microsoft.Edge
 "
 
 # Function to check installation status and retry if unsuccessful
@@ -53,21 +54,25 @@ check_installation() {
     fi
 }
 
+
 # Display information about adding Flathub repository
 echo "Adding Flathub repository..."
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo "Flathub repository added successfully!"
 
+progress=0
+
 # Loop through the apps and install them
 for app in $apps_to_install; do
-    display_progress=$((display_progress + 1))
+    display_progress $progress
     echo "Installing $app..."
     flatpak install flathub $app -y
     check_installation $app
+    show_progress $progress $total_apps
+    progress=$((progress + 1))
 done
 
-
-
+echo
 
 echo "****************************************************************"
 echo "Installation completed!"
