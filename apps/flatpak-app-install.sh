@@ -78,6 +78,8 @@ echo
 
 echo "****************************************************************"
 echo "Installation completed!"
-echo "Successfully installed: ${success_apps%, }"
-echo "Failed to install: ${failed_apps%, }"
+echo
+echo -e "Successfully installed: \033[32m${success_apps%, }\033[0m"
+echo
+echo -e "Failed to install: \033[31m${failed_apps%, }\033[0m"
 echo "****************************************************************"
