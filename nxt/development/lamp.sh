@@ -15,21 +15,14 @@ if sudo dnf -y install httpd; then
     echo "[SUCCESS] Apache" >> "$log_file"
 else
     echo "[FAILURE] Apache" >> "$log_file"
-    exit 1
 fi
-
-
-
-# MySQL
-echo "Installing mariadb..."
-sudo dnf -y install mariadb-server
-sudo systemctl start mariadb
-sudo systemctl enable mariadb
-
-sudo chmod +x development/mysql_secure_installation && sudo ./development/mysql_secure_installation.sh
 
 # PHP
 echo "Installing php..."
-sudo dnf -y install php php-mysqlnd php-fpm phpmyadmin
-
-sudo systemctl restart httpd
+if sudo dnf -y install php php-mysqlnd php-fpm phpmyadmin; then
+    php_version=$(php -v | grep -oP 'PHP \K[0-9]+\.[0-9]+')
+    sudo systemctl restart httpd
+    echo "[SUCCESS] PHP (version $php_version" >> "$log_file)"
+else
+    echo "[FAILURE] PHP" >> "$log_file"
+fi
