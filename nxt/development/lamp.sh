@@ -17,6 +17,18 @@ else
     echo "[FAILURE] Apache" >> "$log_file"
 fi
 
+# MySQL
+echo "Installing mariadb..."
+if sudo dnf -y install mariadb-server; then
+    sudo systemctl start mariadb
+    sudo systemctl enable mariadb
+    sudo chmod +x development/mysql_secure_installation.sh && sudo ./development/mysql_secure_installation.sh
+    mysql_version=$(mysql --version | awk '{print $5}')
+    echo "[SUCCESS] MySQL/MariaDB (version $mysql_version)" >> "$log_file"
+else
+    echo "[FAILURE] MySQL/MariaDB" >> "$log_file"
+fi
+
 # PHP
 echo "Installing php..."
 if sudo dnf -y install php php-mysqlnd php-fpm phpmyadmin; then
