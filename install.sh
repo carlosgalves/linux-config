@@ -8,10 +8,14 @@ if [ ! -e "$log_file" ]; then
 fi
 
 install_scripts=(
+    "fedora/fedora-apps.sh"
+    "fedora/media-codecs.sh"
     "apps/flatpak.sh"
+    "apps/autGov.sh"
     "development/lamp.sh"
     "development/docker.sh"
     "development/node.sh"
+    "development/rabbitmq.sh"
 )
 
 source "helpers/progress-bar.sh"
