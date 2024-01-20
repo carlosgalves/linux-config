@@ -11,6 +11,7 @@ install_scripts=(
     "apps/flatpak.sh"
     "development/lamp.sh"
     "development/docker.sh"
+    "development/node.sh"
 )
 
 source "helpers/progress-bar.sh"
