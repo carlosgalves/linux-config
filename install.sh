@@ -8,6 +8,7 @@ if [ ! -e "$log_file" ]; then
 fi
 
 install_scripts=(
+    "fedora/config.sh"
     "fedora/fedora-apps.sh"
     "fedora/media-codecs.sh"
     "apps/flatpak.sh"
