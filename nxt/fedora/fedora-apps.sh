@@ -35,4 +35,4 @@ sudo dnf -y install webapp-manager
 check_installation "webapps"
 
 # scr-cpy
-dnf copr enable zeno/scrcpy && dnf install scrcpy
+dnf copr enable zeno/scrcpy -y && dnf install -y scrcpy
