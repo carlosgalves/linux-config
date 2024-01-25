@@ -33,3 +33,6 @@ echo "Installing webapp manager..."
 sudo dnf copr enable refi64/webapp-manager -y
 sudo dnf -y install webapp-manager
 check_installation "webapps"
+
+# scr-cpy
+dnf copr enable zeno/scrcpy && dnf install scrcpy
