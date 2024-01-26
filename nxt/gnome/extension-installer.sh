@@ -20,4 +20,4 @@ rm -f ./install-gnome-extensions.sh; wget -N -q "https://raw.githubusercontent.c
 sudo chmod +x extensions.txt
 ./install-gnome-extensions.sh --enable --file extensions.txt
 
-#sudo rm install-gnome-extensions.sh
+sudo rm install-gnome-extensions.sh
