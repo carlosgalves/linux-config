@@ -30,8 +30,7 @@ apps_to_install=(
 
 total_apps=${#apps_to_install[@]}
 
-source helpers/installation-check.sh
-
+source helpers/check-installation.sh
 
 echo "Adding Flathub repository..."
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo

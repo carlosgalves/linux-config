@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source helpers/installation-check.sh
+source helpers/check-installation.sh
 
 echo "Installing Fedora packages..."
 

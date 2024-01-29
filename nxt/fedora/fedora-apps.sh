@@ -2,7 +2,7 @@
 
 log_file="log.txt"
 
-source helpers/installation-check.sh
+source helpers/check-installation.sh
 
 sudo dnf -y update
 
