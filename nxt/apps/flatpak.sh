@@ -1,5 +1,4 @@
 #!/bin/bash
-log_file="log.txt"
 
 apps_to_install=(
     "org.onlyoffice.desktopeditors OnlyOffice"
@@ -29,24 +28,9 @@ apps_to_install=(
     "io.github.mimbrero.WhatsAppDesktop Whatsapp"
 )
 
-success_apps=""
-failed_apps=""
 total_apps=${#apps_to_install[@]}
 
-# Function to check installation status and retry if unsuccessful
-check_installation() {
-    local app_name=$1
-
-    if [ $? -eq 0 ]; then
-        echo "[SUCCESS] $app_name" >> "$log_file"
-        success_apps="$success_apps$app_name, "
-        return 0  # Exit the function with success status
-    else
-        echo "[FAILURE] $app_name" >> "$log_file"
-        failed_apps="$failed_apps$app_name, "
-        return 1  # Exit the function with failure status
-    fi
-}
+source helpers/installation-check.sh
 
 
 echo "Adding Flathub repository..."
