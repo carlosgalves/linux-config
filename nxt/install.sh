@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# Check if script is run with sudo
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run this script with sudo."
+    exit
+fi
+
+# Loop to maintain sudo privileges
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+done &
+
+# Store the PID of the background sudo loop
+sudo_loop_pid=$!
+
+
+source "helpers/progress-bar.sh"
+
+
 log_file="log.txt"
 
 # Check if the log file exists, create it if not
@@ -21,13 +41,12 @@ install_scripts=(
     "development/rabbitmq.sh"
 )
 
-source "helpers/progress-bar.sh"
 
 
 progress=0
 for script in "${install_scripts[@]}"; do
     show_progress $progress ${#install_scripts[@]}
-    sudo chmod +x "$script" && sudo bash ./"$script"
+    chmod +x "$script" && bash ./"$script"
     progress=$((progress + 1))
 done
 
