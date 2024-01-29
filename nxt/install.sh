@@ -34,6 +34,7 @@ install_scripts=(
     "gnome/extension-installer.sh"
     "apps/flatpak.sh"
     "apps/postman-fix.sh"
+    "apps/vs-code.sh"
     "apps/autGov.sh"
     "development/lamp.sh"
     "development/docker.sh"
