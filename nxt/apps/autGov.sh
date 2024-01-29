@@ -2,7 +2,7 @@
 
 source helpers/check-installation.sh
 
-sudo dnf -y update
+dnf -y update
 
 echo "Installing Autenticação Gov..."
 

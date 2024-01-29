@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo dnf install -y expect
+dnf install -y expect
 
 
 SECURE_MYSQL=$(expect -c "

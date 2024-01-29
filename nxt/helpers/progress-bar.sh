@@ -1,4 +1,4 @@
-# progress.sh
+#!/bin/bash
 
 show_progress() {
     local current=$1
