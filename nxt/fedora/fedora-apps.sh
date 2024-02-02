@@ -23,3 +23,12 @@ check_installation "webapps"
 # scr-cpy
 dnf copr enable zeno/scrcpy -y && dnf install -y scrcpy
 check_installation "scr-cpy"
+
+# virtualbox
+sudo dnf -y install https://download.virtualbox.org/virtualbox/7.0.14/VirtualBox-7.0-7.0.14_161095_fedora36-1.x86_64.rpm
+check_installation "VirtualBox"
+
+#  jetbrains toolbox
+wget -O jetbrains-toolbox "https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux"
+tar -xzf jetbrains-toolbox.tar.gz -o toolbox
+
