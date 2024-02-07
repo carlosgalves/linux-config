@@ -28,7 +28,19 @@ check_installation "scr-cpy"
 sudo dnf -y install https://download.virtualbox.org/virtualbox/7.0.14/VirtualBox-7.0-7.0.14_161095_fedora36-1.x86_64.rpm
 check_installation "VirtualBox"
 
-#  jetbrains toolbox
-wget -O jetbrains-toolbox "https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux"
-tar -xzf jetbrains-toolbox.tar.gz -o toolbox
+# jetbrains toolbox
+mkdir toolbox
+wget -O jetbrains-toolbox "https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.2.1.19765.tar.gz"
+tar -xzf jetbrains-toolbox -C toolbox --strip-components=1
+cd toolbox
+sudo ./jetbrains-toolbox
+check_installation "jetbrains-toolbox"
+sudo rm jetbrains-toolbox
+sudo rm -rf toolbox
 
+# kathara
+wget -O kathara "https://github.com/KatharaFramework/Kathara/releases/download/3.7.1/kathara-3.7.1-1.fc38.x86_64.rpm"
+sudo dnf -y install kathara
+sudo rm kathara
+## dependências: xterm
+sudo dnf -y install xterm
