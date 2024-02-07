@@ -1,7 +1,5 @@
 #!/bin/bash
 
-log_file="log.txt"
-
 source helpers/check-installation.sh
 
 dnf -y update
