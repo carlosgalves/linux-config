@@ -39,7 +39,7 @@ install_scripts=(
     "development/lamp.sh"
     "development/docker.sh"
     "development/node.sh"
-    "development/rabbitmq.sh"
+    "development/rabbit-mq.sh"
 )
 
 
