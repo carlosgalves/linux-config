@@ -1,0 +1,43 @@
+[Desktop Entry]
+Name=WhatSie
+GenericName[it]=Client Qt per WhatsApp Web
+GenericName=Qt WhatsApp Web Client
+Comment[it]=Un Client per WhatsApp Web basato su QT
+Comment=A WhatsApp Web Client using the QT framework
+Icon=com.ktechpit.whatsie
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=whatsie --file-forwarding com.ktechpit.whatsie @@u %u @@
+Terminal=false
+Type=Application
+Categories=Chat;Network;InstantMessaging;Qt;
+Keywords=WhatSie;WhatsApp;
+StartupWMClass=whatsie
+StartupNotify=true
+MimeType=x-scheme-handler/whatsapp;
+X-GNOME-UsesNotifications=true
+Actions=Chat;Settings;Theme;Lock;About;
+X-Flatpak=com.ktechpit.whatsie
+
+[Desktop Action Chat]
+Name[it]=Nuova Chat
+Name=New Chat
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=whatsie com.ktechpit.whatsie -n
+
+[Desktop Action Theme]
+Name[it]=Cambia tema
+Name=Toggle theme
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=whatsie com.ktechpit.whatsie -t
+
+[Desktop Action Settings]
+Name[it]=Impostazioni
+Name=Settings
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=whatsie com.ktechpit.whatsie -s
+
+[Desktop Action Lock]
+Name[it]=Blocca
+Name=Lock
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=whatsie com.ktechpit.whatsie -l
+
+[Desktop Action About]
+Name[it]=Info
+Name=About
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=whatsie com.ktechpit.whatsie -i
