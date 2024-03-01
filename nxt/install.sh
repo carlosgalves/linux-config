@@ -36,6 +36,7 @@ install_scripts=(
     "apps/postman-fix.sh"
     "apps/vs-code.sh"
     "apps/autGov.sh"
+    "apps/startup/startup-apps.sh"
     "development/lamp.sh"
     "development/docker.sh"
     "development/node.sh"

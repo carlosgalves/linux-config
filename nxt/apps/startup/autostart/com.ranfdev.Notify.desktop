@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=com.ranfdev.Notify
+Exec=flatpak run --command=notify com.ranfdev.Notify --daemon
+X-Flatpak=com.ranfdev.Notify
