@@ -46,4 +46,4 @@ for extension in "${extensions[@]}"; do
 	sudo -u "$(logname)" code --install-extension "$extension"
 done
 
-check_installation "vs code"
+check_installation "VS Code"

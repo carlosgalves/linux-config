@@ -25,6 +25,7 @@ apps_to_install=(
     #"com.github.tchx84.Flatseal Flatseal"
     #"com.todoist.Todoist Todoist"
     #"app.drey.Warp Warp"
+    "us.zoom.Zoom Zoom"
     #"io.github.mimbrero.WhatsAppDesktop Whatsapp"
 )
 
