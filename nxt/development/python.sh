@@ -3,10 +3,6 @@ log_file="log.txt"
 
 sudo dnf update -y
 
-echo "****************************************************************"
-echo "Python installation"
-echo "****************************************************************"
-
 echo "Installing Python..."
 if dnf -y install python3; then
     echo "[SUCCESS] Python installation" >> "$log_file"
