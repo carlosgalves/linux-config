@@ -28,7 +28,7 @@ check_installation "VirtualBox"
 
 # jetbrains toolbox
 mkdir toolbox
-wget -O jetbrains-toolbox "https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.2.1.19765.tar.gz"
+wget -O jetbrains-toolbox "https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.2.2.20062.tar.gz"
 tar -xzf jetbrains-toolbox -C toolbox --strip-components=1
 cd toolbox
 sudo ./jetbrains-toolbox

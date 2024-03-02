@@ -35,9 +35,13 @@ install_scripts=(
     "apps/flatpak.sh"
     "apps/postman-fix.sh"
     "apps/vs-code.sh"
+    "apps/virtualbox.sh"
     "apps/autGov.sh"
+    "apps/firefox/firefox.sh"
+    "apps/startup/startup-apps.sh"
     "development/lamp.sh"
     "development/docker.sh"
+    "development/python.sh"
     "development/node.sh"
     "development/rabbit-mq.sh"
 )

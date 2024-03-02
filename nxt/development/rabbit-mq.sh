@@ -16,7 +16,8 @@ sudo dnf -y install erlang
 
 # rabbitmq
 if sudo dnf -y install rabbitmq-server; then
-    echo "[SUCCESS] RabbitMQ" >> "$log_file"
+    version=$(sudo rabbitmqctl version)
+    echo "[SUCCESS] Node ($version)" >> "$log_file"
 else
     echo "[FAILED] RabbitMQ" >> "$log_file"
 fi

@@ -5,7 +5,6 @@ sudo dnf update -y
 
 echo "Installing Python..."
 if dnf -y install python3; then
-    echo "[SUCCESS] Python installation" >> "$log_file"
     python_version=$(python3 --version)
     echo "[SUCCESS] $python_version" >> "$log_file"
     conda config --set auto_activate_base False
