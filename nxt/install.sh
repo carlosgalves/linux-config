@@ -19,8 +19,7 @@ sudo_loop_pid=$!
 
 source "helpers/progress-bar.sh"
 
-
-log_file="log.txt"
+log_file="log.json"
 
 # Check if the log file exists, create it if not
 if [ ! -e "$log_file" ]; then
@@ -28,8 +27,8 @@ if [ ! -e "$log_file" ]; then
 fi
 
 install_scripts=(
-    "fedora/config.sh"
     "fedora/fedora-apps.sh"
+    "fedora/config.sh"
     "fedora/media-codecs.sh"
     "gnome/extension-installer.sh"
     "apps/flatpak.sh"
@@ -43,9 +42,8 @@ install_scripts=(
     "development/docker.sh"
     "development/python.sh"
     "development/node.sh"
-    "development/rabbit-mq.sh"
+    #"development/rabbit-mq.sh"
 )
-
 
 
 progress=0
@@ -55,7 +53,20 @@ for script in "${install_scripts[@]}"; do
     progress=$((progress + 1))
 done
 
-
 echo "Install status:"
-awk '/\[SUCCESS\]/ {gsub(/.*\[SUCCESS\] /, "\033[32m&\033[0m"); print}' "$log_file"
-awk '/\[FAILURE\]/ {gsub(/.*\[FAILURE\] /, "\033[31m&\033[0m"); print}' "$log_file"
+
+# Print table header
+printf "%-20s | %-10s | %-20s | %-20s\n" "Application" "Status" "Installed Version" "Latest Release"
+
+# Parse and print each line of the log file as a table row
+while IFS= read -r line; do
+    name=$(echo "$line" | jq -r '.name')
+    status=$(echo "$line" | jq -r '.status')
+    installed_version=$(echo "$line" | jq -r '.installed_version')
+    latest_release=$(echo "$line" | jq -r '.latest_release')
+    printf "%-20s | %-10s | %-20s | %-20s\n" "$name" "$status" "$installed_version" "$latest_release"
+done < "$log_file" | column -t -s "|"
+
+
+#awk '/\[SUCCESS\]/ {gsub(/.*\[SUCCESS\] /, "\033[32m&\033[0m"); print}' "$log_file"
+#awk '/\[FAILURE\]/ {gsub(/.*\[FAILURE\] /, "\033[31m&\033[0m"); print}' "$log_file"

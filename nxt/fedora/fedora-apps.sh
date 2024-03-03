@@ -10,7 +10,11 @@ echo "Installing Fedora Apps..."
 echo "Installing speedtest-cli..."
 dnf install -y python
 dnf install -y speedtest-cli
-check_installation "speedtest-cli"
+
+speedtest_version=$(speedtest-cli --version | grep -oP 'speedtest-cli \K[\d.]+')
+speedtest_stable=$(curl -sSL "https://api.github.com/repos/sivel/speedtest-cli/releases/latest" | jq -r '.tag_name')
+check_installation "speedtest-cli" "$speedtest_version" "$speedtest_stable"
+
 
 # webapps
 echo "Installing webapp manager..."

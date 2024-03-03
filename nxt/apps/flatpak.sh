@@ -2,7 +2,7 @@
 
 apps_to_install=(
     #"org.onlyoffice.desktopeditors OnlyOffice"
-    "org.mozilla.Thunderbird Thunderbird"
+    #"org.mozilla.Thunderbird Thunderbird"
     "com.getpostman.Postman Postman"
     #"io.podman_desktop.PodmanDesktop Podman Desktop"
     #"org.kde.krita Krita"
@@ -25,7 +25,7 @@ apps_to_install=(
     #"com.github.tchx84.Flatseal Flatseal"
     #"com.todoist.Todoist Todoist"
     #"app.drey.Warp Warp"
-    "us.zoom.Zoom Zoom"
+    #"us.zoom.Zoom Zoom"
     #"io.github.mimbrero.WhatsAppDesktop Whatsapp"
 )
 

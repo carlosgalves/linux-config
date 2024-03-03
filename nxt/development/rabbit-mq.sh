@@ -1,6 +1,6 @@
 #!/bin/bash
 
-log_file="log.txt"
+source helpers/check-installation.sh
 
 echo "Installing RabbitMQ..."
 
@@ -13,15 +13,12 @@ rpm --import 'https://github.com/rabbitmq/signing-keys/releases/download/3.0/clo
 
 # erlang
 sudo dnf -y install erlang
+check_installation "Erlang"
 
 # rabbitmq
-if sudo dnf -y install rabbitmq-server; then
-    version=$(sudo rabbitmqctl version)
-    echo "[SUCCESS] Node ($version)" >> "$log_file"
-else
-    echo "[FAILED] RabbitMQ" >> "$log_file"
-fi
+dnf -y install rabbitmq-server
+version=$(sudo rabbitmqctl version)
+check_installation "RabbitMQ" "$version"
 
 #systemctl enable rabbitmq-server
-
 systemctl start rabbitmq-server

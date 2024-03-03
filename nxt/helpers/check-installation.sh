@@ -1,19 +1,17 @@
 #!/bin/bash
 
-log_file="log.txt"
-success_apps=""
-failed_apps=""
+log_file="log.json"
 
 check_installation() {
     local app_name=$1
+    local installed_version=$2
+    local latest_release_url=$3
 
     if [ $? -eq 0 ]; then
-        echo "[SUCCESS] $app_name" >> "$log_file"
-        success_apps="$success_apps$app_name, "
+        echo "{\"name\": \"$app_name\", \"status\": \"SUCCESS\", \"installed_version\": \"$installed_version\", \"latest_release\": \"$latest_release\"}" >> "$log_file"
         return 0  # Exit the function with success status
     else
-        echo "[FAILURE] $app_name" >> "$log_file"
-        failed_apps="$failed_apps$app_name, "
+        echo "{\"name\": \"$app_name\", \"status\": \"FAILURE\"}" >> "$log_file"
         return 1  # Exit the function with failure status
     fi
 }
