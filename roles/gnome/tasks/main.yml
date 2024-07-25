@@ -27,6 +27,19 @@
     value: "'Adwaita'"
     state: present
 
+- name: Install adw-gtk package
+  dnf:
+    name: gnome-themes-extra
+    state: present
+  
+- name: Configure dark-mode for legacy applications
+  become: true
+  become_user: "{{ user }}"
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/gtk-theme"
+    value: "'Adwaita-dark'"
+    state: present
+
 - name: Ensure the local wallpapers directory exists
   file:
     path: /home/{{ user }}/.local/share/backgrounds
