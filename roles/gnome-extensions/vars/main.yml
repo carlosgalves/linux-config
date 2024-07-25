@@ -2,7 +2,6 @@
 gnome_extension_ids:
     - 36    # lock keys
     - 97    # coverflow alt tab
-    - 307   # dash to dock
     - 517   # caffeine
     - 615   # tray icons
     - 1319  # GS connect
@@ -14,6 +13,7 @@ gnome_extension_ids:
     - 3733  # tiling assistant
     - 3843  # just perfection
     - 4470  # media controls
+    - 4994   # dash to dock
     - 5278  # Pano clipboard manager
     - 5660  # weather or not
     - 5724  # battery health charging

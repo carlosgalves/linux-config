@@ -1,7 +1,7 @@
 ---
 flatpak_apps:
   - org.gnome.World.PikaBackup
-  - flathub net.nokyan.Resources
+  - net.nokyan.Resources
   - org.onlyoffice.desktopeditors
   - org.mozilla.Thunderbird
   - org.chromium.Chromium
@@ -20,7 +20,7 @@ flatpak_apps:
   - garden.jamie.Morphosis
   - org.nickvision.tubeconverter
   - com.transmissionbt.Transmission
-  - flathub org.kde.krita
+  - org.kde.krita
   - io.github.Figma_Linux.figma_linux
   - com.jgraph.drawio.desktop
   - com.usebottles.bottles
